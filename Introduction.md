@@ -37,3 +37,6 @@ The most important among them that we might find:
 > Sanity checks.<br>
 > Regression testing.<br>
 
+If there is a small scope of work for testing, then it takes few time to spend for. <br>
+
+![por-que-hacer-testing.jpg](static/por-que-hacer-testing.jpg)
