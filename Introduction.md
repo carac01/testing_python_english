@@ -62,4 +62,15 @@ Obviously, the quality of our code will not be compromised.
 When the client works with our application - he will not have technical problems.
 Probably, he will not like the size of button or color of the text, 
 but we will not get the list of issues.
-That's why we'll sleep tightly.
+That's why we'll sleep tightly.<br>
+
+#### White-box testing
+These tests concentrated on the source of code, knowing what we introduce and what results we expect.
+It is always used different values for input, and the known values for output.
+
+#### Levels
+* Component testing: the function or object is tested separately - one unit.
+* Integration testing: the set of functions and objects are tested in interaction with each other.
+* System (integration) testing: testing between systems, packages, and microservices.
+
+![unit-testing_integration-testing_system-integration-testing.jpg](static/unit-testing_integration-testing_system-integration-testing.jpg)
