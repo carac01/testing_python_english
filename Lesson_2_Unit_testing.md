@@ -142,3 +142,80 @@ isFull()     99     False
 isFull()     100    True
 ```
 It's time to test all of them. Probably, you think that there are more important things exist, and you are right. 
+Fortunately, you are not the only one person who thinks so, that's why the Data Providers is created.
+The simple system where the array with values is passing, which are being tested one by one in a ring.
+Look at the realisation:
+
+```python
+from unittest import TestCase, main
+from battery import Battery
+from unittest_data_provider import data_provider
+
+
+class BatteryTest(TestCase):
+    charge_items = lambda: (
+        (0, False),
+        (1, False),
+        (35, False),
+        (50, False),
+        (99, False),
+        (100, True),
+    )
+    
+    def setUp(self) -> None:
+        self.battery = Battery()
+
+    @data_provider(charge_items)
+    def test_is_full_charged(self, percentage, expected):
+        self.battery.set_percentage(percentage)
+        self.assertTrue(self.battery.is_full() == expected)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Run the test, and it returns the soothing result:
+
+```log
+================================== test session starts ==================================
+collected 1 item                                                                                                                                                  
+
+battery_data_provider.py::BatteryTest::test_is_full_charged PASSED                  [100%]
+
+=================================== 1 passed in 0.16s ====================================
+```
+
+#### Data Base
+
+Testing of our code is relatively easy because the code reacts itself.
+What is happening when we have the DB?
+Here we deal with a problem: 
+to get to know that everything work as expected, we need to create, update and delete a lot of data.
+What if something is going wrong? (with the big possibility)
+_How could we explain our product owner, stakeholder/customer that all users were removed from DB after the testing?_
+
+```markdown
+⚠️Before continue you need to know that you never have to test the DB in production.
+The reason is not important: time, code economy, simplifier...
+This always finishes with disaster.
+```
+
+But it does not mean that you could not test with real data. You could use some solutions.
+
+#### Duplicate DB
+You will copy the DB before the testing.
+
+```python
+import sqlite3
+
+def progress(status, remaining, total):
+    print(f'Copied {total-remaining} of {total} pages...')
+
+con = sqlite3.connect('existing_db.db')
+bck = sqlite3.connect('backup.db')
+with bck:
+    con.backup(bck, pages=1, progress=progress)
+bck.close()
+con.close()
+```
