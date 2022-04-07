@@ -219,3 +219,42 @@ with bck:
 bck.close()
 con.close()
 ```
+
+#### Load DB to the memory
+
+To open DB connection you could use ":memory:", which creates a temporary database in RAM instead of resides on a disk.
+
+```python
+import sqlite3
+
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+...
+```
+
+#### Load new data to replicated tables
+
+```python
+import sqlite3
+
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+cur.execute("create table languages (name, first_appeared)")
+
+# This is the qmark style:
+cur.execute("insert into languages values (?, ?)", ("JavaScript", 1995))
+
+# qmark style with executemany():
+languages_list = [
+    ("Fortran", 1956),
+    ("Python", 1991),
+    ("Julia", 2012),
+]
+cur.executemany("insert into languages values (?, ?)", languages_list)
+
+# named style:
+cur.execute("select * from languages where first_appeared=:year", {"year": 1991})
+print(cur.fetchall())
+
+con.close()
+```
