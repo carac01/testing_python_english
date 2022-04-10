@@ -12,4 +12,4 @@ The original text is under the https://creativecommons.org/licenses/by-nc-nd/4.0
 * Unit testing;
 * TDD;
 * E2E;
-* Summary.
+* Final.
