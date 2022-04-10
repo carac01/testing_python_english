@@ -258,3 +258,4 @@ print(cur.fetchall())
 
 con.close()
 ```
+Examples with tests are located: source_code/languages_db.py and source_code/languages_test_db.py.

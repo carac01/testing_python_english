@@ -8,6 +8,10 @@ source_code/.pytest_cache/
 .idea/
 .idea
 
+package.json
+package-lock.json
+node_modules/
+
 # C extensions
 *.so
 

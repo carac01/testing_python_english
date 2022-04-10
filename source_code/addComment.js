@@ -1,0 +1,25 @@
+describe('Add the comment', () => {
+  beforeEach(() => {
+    cy.visit('https://programadorwebvalencia.com/cursos/testing/e2e/')
+    cy.wait(3000)
+    cy.get('footer').scrollIntoView()
+  })
+
+  it('successfully add the comment', () => {
+    cy.get('button.button.comments-header__button-plus')
+      .click()
+    cy.get('.new-comment__input.new-comment__author')
+      .type('e2e tests name')
+    cy.get('.new-comment__input.new-comment__content')
+      .type('test comment for cypress e2e tests')
+    cy.get('.switch-button__label')
+      .click()
+    cy.get('.new-comment__submit')
+      .click()
+    cy.wait(3000)
+    cy.get('.comment__author')
+      .contains('e2e tests name')
+    cy.get('.comment__content')
+      .contains('test comment for cypress e2e tests')
+  })
+})
