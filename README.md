@@ -1,4 +1,4 @@
-# Testing with Python
+# Testing with Python ❤️ and JavaScript
 
 #### Description
 The project is an english version of spanish web course 
