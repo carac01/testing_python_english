@@ -13,3 +13,5 @@ The original text is under the https://creativecommons.org/licenses/by-nc-nd/4.0
 * TDD;
 * E2E;
 * Final.
+
+Many thanks for the author of the course Andros Fenollosa.
